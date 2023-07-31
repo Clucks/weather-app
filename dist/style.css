@@ -1,0 +1,70 @@
+body {
+    padding: 0;
+    margin: 0;
+    border: 0;
+}
+
+img {}
+
+#content {
+    height: 100vh;
+    width: 100vw;
+    background: linear-gradient(135deg, #04CC4B 5%, #bababa);
+}
+
+#header {
+    display: flex;
+    justify-content: space-around;
+    height: 20vh;
+}
+
+#wrapper {
+    height: 100%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+#wrapper div {
+    border: none;
+    border-radius: 10px;
+    display: inline-block;
+    height: fit-content;
+    background-color: #bababa;
+
+}
+
+#logo-wrapper {
+    display: flex;
+    justify-items: center;
+    align-items: center;
+}
+
+#logo {
+    width: auto;
+    /* The image will take the full width of its parent */
+    height: 90%;
+    /* The height will adjust automatically to maintain aspect ratio */
+
+}
+
+.search-input {
+    background-color: #bababa;
+    border: 0;
+    padding-left: 5px;
+
+}
+
+.search-input:focus {
+    outline: none ;
+
+}
+
+.search-button {
+    color: white;
+    font-weight: bold;
+    background-color: #04CC4B;
+    border: 0;
+    padding: 13px;
+    border-radius: 10px;
+}

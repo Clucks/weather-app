@@ -1,4 +1,3 @@
-
 export class Element {
   constructor(elementType) {
     this.elementType = elementType;
