@@ -1,1 +1,1 @@
-console.log("hi");
+(()=>{"use strict";console.log("hi"),fetch("https://api.weatherapi.com/v1/current.json?key=191b1f3d3e614e14be2183501232707&q=london").then((function(o){if(!o.ok)throw new Error("Network response was not ok");return o.json()})).then((function(o){console.log(o)})).catch((function(o){console.log("Error:",o.message)}))})();
