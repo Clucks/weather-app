@@ -27,7 +27,7 @@ console.log("Weather Application loaded");
 //     });
 async function getWeatherData() {
     console.log("Fetching Weather Data");
-    const url = `https://api.weatherapi.com/v1/current.json?key=${key}&q=london`
+    const url = `https://api.weatherapi.com/v1/current.json?key=${key}&q=Texas`
     try {
         const response = await fetch(url);
         if (!response.ok) {
@@ -57,11 +57,10 @@ async function weatherData() {
 function loadDataToDom(data) {
     condition.textContent = data.current.condition.text; // Update the condition text
     location.textContent = data.location.name; // Update the location name
-    degree.textContent += data.current.temp_f;
-    feels.textContent += data.current.feelslike_f;
-    wind.textContent += data.current.gust_mph;
-    humidity.textContent += data.current.humidity;
+    degree.textContent += data.current.temp_f + "°F";
+    feels.textContent += data.current.feelslike_f + "°F";
+    wind.textContent += data.current.gust_mph + " mph";
+    humidity.textContent += data.current.humidity + "%";
 }
 
 weatherData();
-// ... and so on

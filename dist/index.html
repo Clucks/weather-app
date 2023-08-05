@@ -16,6 +16,11 @@
 
 <body>
     <div id="content">
+        <div hidden class="loading-screen">
+            <div class="circle"></div>
+            <p>Loading...</p>
+        </div>
+
         <div id="header">
             <div id="logo-wrapper">
                 <img id="logo" src="../assets/weather.png">
@@ -24,7 +29,7 @@
             <div> </div>
             <div id="wrapper">
                 <div>
-                    <input type="text" class="search-input" placeholder="Location">
+                    <input type="text" class="search-input" placeholder="">
                     <button type="submit" class="search-button">Search</button>
                 </div>
 
@@ -35,13 +40,20 @@
             <div class="left">
                 <div id="condition"></div>
                 <div id="location"></div>
-                <div id="degree">Degrees: </div>
-                <div id="feels">Feels like: </div>
-                <div id="wind">Wind: </div>
-                <div id="humidity">Humidity: </div>
+                <div id="degree"></div>
+                <div id="wrapper1">
+                    <div>
+                        <div>Feels Like:</div>
+                        <div>Wind:</div>
+                        <div>Humidity:</div>
+                    </div>
+                    <div>
+                        <span id="feels"></span><span id="wind"></span><span id="humidity"> </span>
+                    </div>
+                </div>
             </div>
             <div class="right">
-                <img src="../assets/sun.png" >
+                <img src="../assets/sun.png">
             </div>
 
         </div>
