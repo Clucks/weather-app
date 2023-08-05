@@ -43,7 +43,7 @@ img {}
 #logo {
     width: auto;
     /* The image will take the full width of its parent */
-    height: 90%;
+    height: 60%;
     /* The height will adjust automatically to maintain aspect ratio */
 
 }
