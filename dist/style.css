@@ -22,6 +22,57 @@ body {
     align-items: center;
 }
 
+.loading-screen[hidden] {
+    display: none;
+}
+
+.loading-screen {
+    position: absolute;
+    top: 0;
+    left: 0;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    min-height:100vh;
+    min-width: 100vw; 
+    background: linear-gradient(135deg, #04CC4B 5%, #ffffff);
+    transition: opacity 0.5s ease-in-out;
+
+}
+
+.circle {
+    
+    width: 30px;
+    height: 30px;
+    border-radius: 50%;
+    background: linear-gradient(#04CC4B, #ffffff);
+    transition: opacity 0.5s ease-in-out;
+    /* Add a transition effect to opacity */
+
+    animation: spin 1s infinite linear;
+}
+
+@keyframes spin {
+    0% {
+        transform: rotate(0deg);
+    }
+
+    100% {
+        transform: rotate(360deg);
+    }
+}
+
+p {
+    margin-top: 10px;
+    font-weight: bold;
+    color: #ffffff;
+}
+
+#wrapper2 {
+    min-height: 100vh;
+    min-width: 100vw;
+}
+
 #header {
     padding-top: 8vh;
     display: flex;

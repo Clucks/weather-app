@@ -7,31 +7,13 @@ const wind = document.querySelector("#wind");
 const humidity = document.querySelector("#humidity");
 console.log("Weather Application loaded");
 
-// URL (required), options (optional)
-// fetch(`https://api.weatherapi.com/v1/current.json?key=${key}&q=london`)
-//     .then(function (response) {
-//         // Check if the response was successful (status code 200)
-//         if (!response.ok) {
-//             throw new Error('Network response was not ok');
-//         }
-//         // Parse the JSON response
-//         return response.json();
-//     })
-//     .then(function (data) {
-//         // Successful response, data contains the weather information
-//         console.log(data);
-//     })
-//     .catch(function (err) {
-//         // Error handling
-//         console.log('Error:', err.message);
-//     });
 async function getWeatherData() {
     console.log("Fetching Weather Data");
-    const url = `https://api.weatherapi.com/v1/current.json?key=${key}&q=Texas`
+    const url = `https://api.weatherapi.com/v1/current.json?key=${key}&q=London`
     try {
         const response = await fetch(url);
         if (!response.ok) {
-            throw new Error("Error code 200")
+            throw new Error("Error code 199")
         }
         const data = await response.json();
         return data;
@@ -43,12 +25,15 @@ async function getWeatherData() {
 
 async function weatherData() {
     try {
+        toggleLoadingScreen();
+        await new Promise((resolve) => setTimeout(resolve, 1000)); // Simulate delay
+
         const data = await getWeatherData();
+        toggleLoadingScreen();
         loadDataToDom(data)
         console.log(data);
-        console.log(data.current);
         return data;
-    } catch(err) {
+    } catch (err) {
         console.log("Data not retrieved");
         console.log("Error: ", err);
     }
@@ -63,4 +48,22 @@ function loadDataToDom(data) {
     humidity.textContent += data.current.humidity + "%";
 }
 
+function toggleLoadingScreen() {
+    const existingScreen = document.querySelector(".loading-screen");
+
+    if (!existingScreen) {
+        const screen = document.createElement("div");
+        screen.classList.add("loading-screen");
+        const circle = document.createElement("div");
+        circle.classList.add("circle");
+        const p = document.createElement("p");
+        p.textContent = "Loading...";
+        screen.appendChild(circle);
+        screen.appendChild(p);
+
+        document.querySelector("#content").appendChild(screen);
+    } else {
+        existingScreen.setAttribute("hidden", true);
+    }
+}
 weatherData();
