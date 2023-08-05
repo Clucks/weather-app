@@ -4,18 +4,22 @@ body {
     border: 0;
 }
 
-img {}
 
 #content {
     height: 100vh;
     width: 100vw;
     background: linear-gradient(135deg, #04CC4B 5%, #bababa);
+    display: flex;
+    flex-direction: column;
+    align-items: center;
 }
 
 #header {
+    padding-top:8vh;
     display: flex;
     justify-content: space-around;
     height: 20vh;
+    width: 80%;
 }
 
 #wrapper {
@@ -56,7 +60,7 @@ img {}
 }
 
 .search-input:focus {
-    outline: none ;
+    outline: none;
 
 }
 
@@ -67,4 +71,24 @@ img {}
     border: 0;
     padding: 13px;
     border-radius: 10px;
+}
+
+.main {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 400px;
+}
+.right{
+    height:100%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.right img{
+    width: auto;
+    /* The image will take the full width of its parent */
+    max-height: 50%;
+    /* The height will adjust automatically to maintain aspect ratio */
 }
