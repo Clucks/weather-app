@@ -6,29 +6,35 @@ const feels = document.querySelector("#feels");
 const wind = document.querySelector("#wind");
 const humidity = document.querySelector("#humidity");
 const image = document.querySelector("#condition-image");
+const search = document.querySelector(".search-input");
+const searchButton = document.querySelector(".search-button");
 console.log("Weather Application loaded");
 
-async function getWeatherData() {
+async function getWeatherData(location) {
     console.log("Fetching Weather Data");
-    const url = `https://api.weatherapi.com/v1/current.json?key=${key}&q=Louisiana`
+    const url = `https://api.weatherapi.com/v1/current.json?key=${key}&q=${location}`
     try {
         const response = await fetch(url);
         if (!response.ok) {
             throw new Error("Error code 199")
         }
         const data = await response.json();
-        return data;
+        if (data.error) {
+            search.textContent = "Invalid City"
+        } else {
+            return data;
+        }
     } catch (err) {
         console.log(`Error:`, err.message);
         throw err;
     }
 }
 
-async function weatherData() {
+async function weatherData(location) {
     try {
         toggleLoadingScreen();
         await new Promise((resolve) => setTimeout(resolve, 1000)); // Simulate delay
-        const data = await getWeatherData();
+        const data = await getWeatherData(location);
         loadDataToDom(data)
         toggleLoadingScreen();
 
@@ -37,6 +43,7 @@ async function weatherData() {
     } catch (err) {
         console.log("Data not retrieved");
         console.log("Error: ", err);
+        return;
     }
 }
 
@@ -47,14 +54,12 @@ function loadDataToDom(data) {
     feels.textContent = data.current.feelslike_f + "°F";
     wind.textContent = data.current.gust_mph + " mph";
     humidity.textContent = data.current.humidity + "%";
-    console.log(image);
-    console.log(condition.textContent);
     if (condition.textContent === "Sunny") {
         image.src = "../assets/sun.png"
     } else if (condition.textContent === "Overcast") {
         image.src = "../assets/cloudy.png"
     } else if (condition.textContent === "Partly cloudy") {
-        image.src = "../assets/sun.png"
+        image.src = "../assets/partcloudy.png"
     } else if (condition.textContent === "Overcast") {
         image.src = "../assets/sun.png"
     } else if (condition.textContent === "Light rain") {
@@ -64,13 +69,14 @@ function loadDataToDom(data) {
     } else {
         image.src = "../assets/sun.png"
     }
-    
+
 
 }
 
 function toggleLoadingScreen() {
     const existingScreen = document.querySelector(".loading-screen");
     if (!existingScreen) {
+        console.log("loading not exist");
         const screen = document.createElement("div");
         screen.classList.add("loading-screen");
         const circle = document.createElement("div");
@@ -79,10 +85,42 @@ function toggleLoadingScreen() {
         p.textContent = "Loading...";
         screen.appendChild(circle);
         screen.appendChild(p);
-
         document.querySelector("#content").appendChild(screen);
     } else {
-        existingScreen.setAttribute("hidden", true);
+        console.log("loading exist changing hidden");
+        existingScreen.toggleAttribute("hidden");
     }
 }
-weatherData();
+weatherData("london");
+
+searchButton.addEventListener("click", async function (event) {
+    event.preventDefault();
+    const input = search.value.trim();
+    if (input === "") {
+        red();
+        console.log("noinput");
+    } else {
+        console.log(input);
+        if(getWeatherData(input) === null){
+            red();
+        }else{
+            const data =  weatherData(input)
+            loadDataToDom(data);
+        }
+    }
+})
+function red() {
+    search.placeholder = "invalid city"
+    // Add a class to the searchButton to animate the underline
+    search.classList.add("error-animation");
+
+    // Remove the class after the animation completes
+    setTimeout(() => {
+        search.classList.remove("error-animation");
+        search.placeholder = ""
+    }, 300); // Adjust the timeout to match your CSS transition duration
+}
+    // if()
+    // search.textContent = "";
+    // console.log(input);
+    // const data = getWeatherData(input);

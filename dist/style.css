@@ -33,15 +33,15 @@ body {
     display: flex;
     justify-content: center;
     align-items: center;
-    min-height:100vh;
-    min-width: 100vw; 
+    min-height: 100vh;
+    min-width: 100vw;
     background: linear-gradient(135deg, #04CC4B 5%, #ffffff);
     transition: opacity 0.5s ease-in-out;
 
 }
 
 .circle {
-    
+
     width: 30px;
     height: 30px;
     border-radius: 50%;
@@ -112,12 +112,18 @@ p {
 }
 
 .search-input {
+    position: relative;
+    display: inline-block;
     background-color: #ffffff;
     border: 0;
     padding-left: 5px;
-
+    border: none;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
 }
-
+.error-animation{
+    border:2px solid red !important;
+}
 .search-input:focus {
     outline: none;
 
@@ -130,6 +136,7 @@ p {
     border: 0;
     padding: 13px;
     border-radius: 10px;
+    cursor: pointer;
 }
 
 .main {
